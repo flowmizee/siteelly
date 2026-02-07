@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import FeaturedGallery from './components/FeaturedGallery';
 import About from './components/About';
 import Services from './components/Services';
 import WhyChooseUs from './components/WhyChooseUs';
@@ -16,6 +17,7 @@ const App: React.FC = () => {
       <Header />
       <main>
         <Hero />
+        <FeaturedGallery />
         <About />
         <Services />
         <WhyChooseUs />

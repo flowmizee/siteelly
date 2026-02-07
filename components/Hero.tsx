@@ -34,14 +34,14 @@ const Hero: React.FC = () => {
           </div>
 
           <h1 className="text-5xl md:text-8xl font-black text-white leading-[1.1] mb-8 font-display">
-            Corte certo. <br />
+            Tratamento, saúde e beleza <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600">
-              Estilo que impõe respeito.
+              capilar em alto nível.
             </span>
           </h1>
           
           <p className="text-lg md:text-xl text-neutral-300 mb-10 font-light max-w-xl leading-relaxed">
-            Especialista em valorizar sua beleza através de técnicas modernas de estética avançada e cuidados capilares profissionais.
+            Especialista em terapia capilar, com técnicas modernas para tratar patologias do couro cabeludo e realçar a beleza natural dos seus fios.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-5 mb-16">
