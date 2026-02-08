@@ -10,7 +10,7 @@ const AIStyleConsultant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: 'Olá! Sou seu Guia de Estilo no Studio Elly Oliveira. Para eu te sugerir o melhor look: qual o seu tipo de cabelo e o formato do seu rosto?' }
+    { role: 'model', text: 'Olá! É um prazer te atender 💖\n\nMe conta: o que você está buscando hoje? Pode ser uma mudança no visual, tratamento capilar, estética, ou até uma dúvida sobre qual procedimento combina mais com você?' }
   ]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,20 +33,83 @@ const AIStyleConsultant: React.FC = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      let response = "Que maravilha! Para o seu perfil, eu recomendaria um corte com camadas para dar leveza e uma hidratação profunda. Vamos agendar uma avaliação?";
+      let response = "Para dúvidas específicas ou atendimento personalizado, entre em contato diretamente pelo nosso WhatsApp disponível no site. Será um prazer te atender 💖";
       
-      if (userMessage.includes('redondo')) {
-        response = "Para rostos redondos, cortes com camadas desfiadas ou um Long Bob com as pontas frontais alongadas ajudam a alongar a silhueta facial de forma elegante.";
-      } else if (userMessage.includes('oval')) {
-        response = "O rosto oval é muito versátil! Você fica ótima tanto com cortes curtos (Pixie) quanto com longos ondulados. É o formato ideal para ousar!";
-      } else if (userMessage.includes('quadrado')) {
-        response = "Para suavizar os traços de um rosto quadrado, recomendo franjas laterais e cortes com ondas suaves, evitando linhas muito retas na altura do maxilar.";
-      } else if (userMessage.includes('crespo') || userMessage.includes('cacheado')) {
-        response = "Para seus cachos, o corte a seco com técnicas de visagismo é essencial para controlar o volume e definir a forma. Hidratação é a nossa prioridade número um!";
-      } else if (userMessage.includes('pele') || userMessage.includes('limpeza')) {
-        response = "Nossa limpeza de pele profunda utiliza protocolos de desincrustação e nutrição que deixam o rosto radiante. Ideal para fazer uma vez por mês!";
-      } else if (userMessage.includes('sobrancelha')) {
-        response = "O design de sobrancelhas aqui no Studio foca no mapeamento facial para encontrar o arco perfeito que valoriza o seu olhar de forma natural.";
+      // Lógica Baseada na Base de Conhecimento fornecida
+      
+      // SOBRE O STUDIO
+      if (userMessage.includes('onde fica') || userMessage.includes('endereço') || userMessage.includes('localização')) {
+        response = "Estamos localizados na 6ª Av. Inglaterra, 111 – Novo Horizonte, em Parauapebas – PA.";
+      } else if (userMessage.includes('horário') || userMessage.includes('aberto') || userMessage.includes('funciona')) {
+        response = "Funcionamos de segunda a sábado, das 08:00 às 18:00.";
+      } else if (userMessage.includes('agendar') || userMessage.includes('marcar') || userMessage.includes('como faço')) {
+        response = "Você pode agendar diretamente pelo WhatsApp ou escolhendo o serviço no site e seguindo para o pagamento.";
+      }
+      
+      // TERAPIA CAPILAR
+      else if (userMessage.includes('queda') || userMessage.includes('cabelo caindo')) {
+        response = "Sim. Trabalhamos com terapia capilar usando técnicas modernas para tratar problemas do couro cabeludo e fortalecer os fios.";
+      } else if (userMessage.includes('terapia capilar')) {
+        if (userMessage.includes('estética')) {
+          response = "Não. A terapia capilar também cuida da saúde do couro cabeludo e pode ajudar em casos de oleosidade, queda e enfraquecimento capilar.";
+        } else if (userMessage.includes('avaliação') || userMessage.includes('precisa')) {
+          response = "Sim. Sempre analisamos o couro cabeludo e a necessidade do cliente antes de indicar o tratamento ideal.";
+        } else {
+          response = "A Terapia Capilar é incrível para tratar queda, oleosidade excessiva ou sensibilidade. Usamos técnicas modernas para devolver a saúde ao seu couro cabeludo!";
+        }
+      }
+      
+      // SERVIÇOS
+      else if (userMessage.includes('serviços') || userMessage.includes('o que você faz') || userMessage.includes('oferecem')) {
+        response = "Trabalhamos com terapia capilar, cílios, sobrancelhas, estética corporal, massagens, drenagem, ventosaterapia, manicure, cabelos e penteados.";
+      } else if (userMessage.includes('cílios') || userMessage.includes('extensão')) {
+        if (userMessage.includes('nunca fiz') || userMessage.includes('qual é melhor') || userMessage.includes('indica')) {
+           response = "Depende muito do efeito que você quer alcançar e do seu estilo. Para te indicar o melhor com segurança, me chama no WhatsApp disponível no site 💖";
+        } else {
+           response = "Sim. Trabalhamos com fio a fio, clássico, 5D, 6D e técnicas de destaque para o olhar.";
+        }
+      } else if (userMessage.includes('sobrancelha') || userMessage.includes('henna') || userMessage.includes('lamination')) {
+        response = "Sim. Temos design com henna e também brow lamination.";
+      }
+      
+      // ESTÉTICA CORPORAL
+      else if (userMessage.includes('drenagem') || userMessage.includes('massagem')) {
+        if (userMessage.includes('qual') || userMessage.includes('melhor')) {
+          response = "Isso depende do seu objetivo e da sua necessidade atual. Para te indicar o melhor com precisão, me chama no WhatsApp disponível no site 💖";
+        } else {
+          response = "Sim. Trabalhamos com drenagem linfática, massagens relaxantes e ventosaterapia.";
+        }
+      } else if (userMessage.includes('ventosa')) {
+        response = "Normalmente não dói. Pode causar leve pressão na pele, mas é um procedimento seguro e controlado.";
+      }
+      
+      // PAGAMENTO
+      else if (userMessage.includes('pagar') || userMessage.includes('pagamento')) {
+        response = "Sim. Você pode selecionar o serviço no site e realizar o pagamento online.";
+      } else if (userMessage.includes('pix')) {
+        response = "Sim, aceitamos PIX e outras formas de pagamento conforme disponibilidade no atendimento.";
+      }
+      
+      // QUALIDADE E DIFERENCIAIS
+      else if (userMessage.includes('diferencial') || userMessage.includes('por que')) {
+        response = "Trabalhamos com atendimento humanizado, técnicas modernas, produtos importados e protocolos de alto padrão.";
+      } else if (userMessage.includes('esterilizados') || userMessage.includes('limpeza') || userMessage.includes('biossegurança')) {
+        response = "Sim. Seguimos rigorosamente normas de biossegurança, com materiais descartáveis ou esterilizados.";
+      } else if (userMessage.includes('qualidade') || userMessage.includes('produtos') || userMessage.includes('marcas')) {
+        response = "Sim. Trabalhamos apenas com marcas premium e produtos importados para garantir resultados de alto nível.";
+      } else if (userMessage.includes('elly') || userMessage.includes('quem é') || userMessage.includes('profissional')) {
+        response = "O studio é comandado pela especialista Elly Oliveira, com anos de experiência na área da beleza.";
+      } else if (userMessage.includes('resultados') || userMessage.includes('fotos') || userMessage.includes('instagram')) {
+        response = "Sim. Temos portfólio e também transformações disponíveis no Instagram.";
+      }
+      
+      // CONSULTA PERSONALIZADA (RECOMENDAÇÕES)
+      else if (userMessage.includes('melhor para mim') || userMessage.includes('qual serviço') || userMessage.includes('o que você indica')) {
+        response = "Isso pode variar de acordo com o que você deseja melhorar ou transformar. Para te orientar com mais precisão e de forma personalizada, me chama no WhatsApp disponível no site 💖";
+      } else if (userMessage.includes('cabelo fraco') || userMessage.includes('fortalecimento')) {
+        response = "Existem protocolos específicos para fortalecimento e recuperação dos fios. Para avaliarmos melhor seu caso, me chama no WhatsApp disponível no site 💖";
+      } else if (userMessage.includes('mudar') || userMessage.includes('visual')) {
+        response = "Podemos te orientar com base no resultado que você deseja alcançar. Para uma orientação personalizada, me chama no WhatsApp disponível no site 💖";
       }
 
       setMessages(prev => [...prev, { role: 'model', text: response }]);
@@ -65,12 +128,13 @@ const AIStyleConsultant: React.FC = () => {
           <div className="bg-neutral-900/80 p-5 flex justify-between items-center border-b border-white/5">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-gold-500 rounded-full text-black">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
                 <Sparkles size={16} />
               </div>
               <div>
-                <h3 className="text-white font-bold text-sm font-display">Visagismo Especializado</h3>
+                <h3 className="text-white font-bold text-sm font-display">Consultoria de Beleza Personalizada</h3>
                 <span className="text-[10px] text-green-500 flex items-center gap-1 uppercase tracking-widest font-bold">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> Consultora Online
+                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> Atendimento Online Exclusivo
                 </span>
               </div>
             </div>
@@ -82,7 +146,7 @@ const AIStyleConsultant: React.FC = () => {
           <div className="flex-1 overflow-y-auto p-5 space-y-5 bg-black/50">
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] rounded-2xl px-5 py-3 text-sm leading-relaxed ${
+                <div className={`max-w-[85%] rounded-2xl px-5 py-3 text-sm leading-relaxed whitespace-pre-wrap ${
                   msg.role === 'user' 
                     ? 'bg-gold-500 text-black rounded-br-none font-bold shadow-lg shadow-gold-500/10' 
                     : 'bg-neutral-900 text-neutral-200 rounded-bl-none border border-white/5'
@@ -110,7 +174,7 @@ const AIStyleConsultant: React.FC = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyPress}
-                placeholder="Ex: Qual corte combina com rosto oval?"
+                placeholder="Ex: Qual o endereço de vocês?"
                 className="w-full bg-black text-white rounded-2xl pl-5 pr-14 py-4 text-xs focus:outline-none focus:ring-1 focus:ring-gold-500/30 border border-white/5"
                 disabled={isLoading}
               />
@@ -134,7 +198,7 @@ const AIStyleConsultant: React.FC = () => {
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
         {!isOpen && (
           <span className="absolute right-full mr-6 bg-white text-black px-4 py-2 rounded-xl text-xs font-black shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap uppercase tracking-widest border border-gold-500/20">
-            Dúvidas de Estilo?
+            Dúvidas? Fale comigo!
           </span>
         )}
       </button>
